@@ -89,6 +89,14 @@ Therefore, the first step is to remove some files and content from the files in 
 1. Remove the following files:
 
    ```bash
+   impl pallet_template::Config for Runtime {
+	  type RuntimeEvent = RuntimeEvent;
+	  //type WeightInfo = pallet_template::weights::SubstrateWeight<Runtime>;
+  }
+   ```
+
+1. Open runtime/src/lib.rs and remove the type WeightInfo in line "impl pallet_template::Config for Runtime":
+   ```bash
    benchmarking.rs
    mock.rs
    tests.rs
@@ -268,7 +276,7 @@ To implement this logic in the proof-of-existence pallet:
    // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
    #[pallet::call]
    impl<T: Config> Pallet<T> {
-     #[pallet::weight(0)]
+     #[pallet::weight({0})]
      #[pallet::call_index(1)]
      pub fn create_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
        // Check that the extrinsic was signed and get the signer.
@@ -290,7 +298,7 @@ To implement this logic in the proof-of-existence pallet:
        Ok(())
      }
 
-     #[pallet::weight(0)]
+     #[pallet::weight({0})]
      #[pallet::call_index(2)]
      pub fn revoke_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
        // Check that the extrinsic was signed and get the signer.
