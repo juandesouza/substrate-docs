@@ -89,17 +89,18 @@ Therefore, the first step is to remove some files and content from the files in 
 1. Remove the following files:
 
    ```bash
-   impl pallet_template::Config for Runtime {
-	  type RuntimeEvent = RuntimeEvent;
-	  //type WeightInfo = pallet_template::weights::SubstrateWeight<Runtime>;
+   bash
+   benchmarking.rs
+   mock.rs
+   tests.rs   
   }
    ```
 
 1. Open runtime/src/lib.rs and remove the type WeightInfo in line "impl pallet_template::Config for Runtime":
    ```bash
-   benchmarking.rs
-   mock.rs
-   tests.rs
+   impl pallet_template::Config for Runtime {
+	  type RuntimeEvent = RuntimeEvent;
+	  //type WeightInfo = pallet_template::weights::SubstrateWeight<Runtime>;
    ```
 
 1. Open the `lib.rs` file in a text editor.
